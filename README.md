@@ -1,92 +1,266 @@
 # Secure Messaging Platform (Signal Clone)
 
-This repository contains a full-stack secure messaging experience inspired by Signal, with a Next.js frontend and a FastAPI backend backed by SQLite.
+A full-stack secure messaging application inspired by **Signal Messenger**, built with **Next.js**, **FastAPI**, **SQLite**, and **WebSockets**.
 
-## Tech stack
+The application recreates the core messaging experience of Signal, including real-time messaging, contact management, group conversations, typing indicators, reactions, replies, and file sharing through a clean, modern interface.
 
-- Frontend: Next.js 16 + TypeScript + Tailwind CSS
-- Backend: FastAPI + SQLAlchemy + WebSockets
-- Database: SQLite
-- Real-time: WebSocket-based typing and message sync
+---
 
-## Features included
+## 🚀 Live Demo
 
-- Mocked authentication and registration with OTP support
-- Contact management and search
-- One-on-one and group conversations
-- Real-time message exchange and typing indicators
-- Message status, reactions, replies, and file uploads
-- Signal-inspired UI with conversation list and chat pane
+**Frontend**
 
-## Project structure
+https://signal-clone-l2nee8i98-shreyaprojects.vercel.app/chat
 
-- backend/: FastAPI app, SQLAlchemy models, routes, WebSocket manager, seed data
-- frontend/: Next.js app, UI components, Zustand store, API helpers
+**Backend API (Swagger Docs)**
 
-## Setup
+https://signal-clone-wzty.onrender.com/docs
 
-### 1. Backend
+---
+
+## ✨ Features
+
+* ✅ Mocked authentication with OTP verification
+* ✅ Contact management and search
+* ✅ One-to-one conversations
+* ✅ Group conversations
+* ✅ Real-time messaging using WebSockets
+* ✅ Typing indicators
+* ✅ Message delivery/read status
+* ✅ Message reactions
+* ✅ Reply to messages
+* ✅ File uploads
+* ✅ Signal-inspired responsive UI
+* ✅ SQLite database with seeded demo data
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* Next.js 16
+* TypeScript
+* Tailwind CSS
+* Zustand
+
+### Backend
+
+* FastAPI
+* SQLAlchemy
+* WebSockets
+* Pydantic
+
+### Database
+
+* SQLite
+
+---
+
+## 🏗 Architecture
+
+Frontend (Next.js)
+
+⬇ REST API + WebSockets
+
+Backend (FastAPI)
+
+⬇
+
+SQLite Database
+
+WebSockets are used for:
+
+* Real-time messaging
+* Typing indicators
+* Conversation synchronization
+
+---
+
+## 📁 Project Structure
+
+```
+backend/
+│── main.py
+│── models.py
+│── routes/
+│── websocket_manager.py
+│── seed.py
+│── requirements.txt
+
+frontend/
+│── app/
+│── components/
+│── store/
+│── lib/
+│── package.json
+```
+
+---
+
+## ⚙️ Local Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd signal-clone
+```
+
+---
+
+### 2. Backend
 
 ```bash
 cd backend
+
 python -m venv .venv
-.venv\Scripts\activate   # Windows
+
+# Windows
+.venv\Scripts\activate
+
 pip install -r requirements.txt
+
 python seed.py
+
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### 2. Frontend
+Backend runs at:
+
+```
+http://localhost:8000
+```
+
+Swagger Documentation:
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+### 3. Frontend
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-Then open:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000/docs
+Frontend runs at:
 
-## Demo accounts
+```
+http://localhost:3000
+```
 
-All seeded users use the password `password123`.
+---
 
-- Alice Johnson — +1 (555) 001-0001
-- Bob Smith — +1 (555) 001-0002
-- Carol White — +1 (555) 001-0003
-- David Brown — +1 (555) 001-0004
+## 👤 Demo Accounts
 
-## Database schema overview
+All seeded users use the password:
 
-Core entities:
-- users
-- contacts
-- conversations
-- conversation_members
-- messages
-- message_statuses
-- message_reactions
+```
+password123
+```
 
-Relationships are modeled for direct chats, group chats, message histories, read receipts, and reactions.
+| User          | Phone             |
+| ------------- | ----------------- |
+| Alice Johnson | +1 (555) 001-0001 |
+| Bob Smith     | +1 (555) 001-0002 |
+| Carol White   | +1 (555) 001-0003 |
+| David Brown   | +1 (555) 001-0004 |
 
-## Deploying to production
+---
 
-### Backend on Render
-1. Create a new Web Service on Render and connect this repository.
-2. Render will use the provided [render.yaml](render.yaml) configuration.
-3. Set these environment variables:
-   - SECRET_KEY
-   - CORS_ORIGINS=https://your-frontend-url.vercel.app
+## 🗄 Database Schema
 
-### Frontend on Vercel
-1. Import the frontend folder into Vercel.
-2. Set these environment variables:
-   - NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com
-   - NEXT_PUBLIC_WS_URL=wss://your-backend-url.onrender.com
-3. Deploy.
+Core tables include:
 
-## Notes
+* users
+* contacts
+* conversations
+* conversation_members
+* messages
+* message_statuses
+* message_reactions
 
-- OTP verification is intentionally mocked with the fixed code `123456`.
-- Encryption is simulated for the assignment experience rather than implemented as a real cryptographic protocol.
+These entities support:
+
+* Direct messaging
+* Group chats
+* Read receipts
+* Reactions
+* Reply chains
+* Message history
+
+---
+
+## 🌐 Deployment
+
+### Backend (Render)
+
+Environment Variables
+
+```
+SECRET_KEY=<your-secret-key>
+CORS_ORIGINS=https://signal-clone-l2nee8i98-shreyaprojects.vercel.app
+```
+
+Production Backend
+
+```
+https://signal-clone-wzty.onrender.com
+```
+
+---
+
+### Frontend (Vercel)
+
+Environment Variables
+
+```
+NEXT_PUBLIC_API_URL=https://signal-clone-wzty.onrender.com
+
+NEXT_PUBLIC_WS_URL=wss://signal-clone-wzty.onrender.com
+```
+
+Production Frontend
+
+```
+https://signal-clone-l2nee8i98-shreyaprojects.vercel.app/chat
+```
+
+---
+
+## 🔒 Assignment Notes
+
+This project was built as part of a Full-Stack Software Engineering assignment.
+
+For simplicity:
+
+* OTP verification is mocked using the fixed code **123456**
+* Encryption is simulated for demonstration purposes
+* SQLite is used as the database
+
+---
+
+## 🚀 Future Improvements
+
+* End-to-end encryption
+* Push notifications
+* Voice messages
+* Video calling
+* Offline synchronization
+* Message search
+* Media compression
+* Docker deployment
+* PostgreSQL support
+
+---
+
+## 📄 License
+
+This project was developed for educational and assessment purposes.
