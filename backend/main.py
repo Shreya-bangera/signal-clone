@@ -42,6 +42,14 @@ app.include_router(user_routes.router, prefix="/api")
 app.include_router(conversation_routes.router, prefix="/api")
 app.include_router(message_routes.router, prefix="/api")
 
+@app.get("/")
+def root():
+    return {
+        "message": "Signal Clone API is running",
+        "docs": "/docs",
+        "health": "/api/health"
+    }
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket, token: str = Query(...)):
     try:
