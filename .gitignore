@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+.next/
+out/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads and local data
+backend/uploads/
+*.sqlite3
